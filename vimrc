@@ -15,9 +15,9 @@ set laststatus=2
 """"""""""""""""""""""""""""""""""""""""""""
 " => ctags
 """""""""""""""""""""""""""""""""""""""""""
-set tags+=~/src/kernels/msm/tags
+set tags+=~/.vim/tags/kernel-ctags
 set tags+=~/.vim/tags/my-ctags
-map <F12> :!ctags --tag-relative=yes  -f ~/.vim/tags/my-ctags -R *<CR> 
+map <F12> :!ctags --tag-relative=yes  -f ~/vimfiles/vim/tags/my-ctags -R *<CR> 
 
 """"""""""""""""""""""""""""""""""""""""""""
 " => TagList
