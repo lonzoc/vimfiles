@@ -13,6 +13,13 @@ Plugin 'vim-airline/vim-airline'
 set laststatus=2
 
 """"""""""""""""""""""""""""""""""""""""""""
+" => ctags
+"""""""""""""""""""""""""""""""""""""""""""
+set tags+=~/src/kernels/msm/tags
+set tags+=~/.vim/tags/my-ctags
+map <F12> :!ctags --tag-relative=yes  -f ~/.vim/tags/my-ctags -R *<CR> 
+
+""""""""""""""""""""""""""""""""""""""""""""
 " => TagList
 """"""""""""""""""""""""""""""""""""""""""""
 Plugin 'taglist.vim'
@@ -21,7 +28,7 @@ let Tlist_Exit_OnlyWindow=1
 let Tlist_Use_Right_Window=1
 let Tlist_Auto_Update=1
 let Tlist_Show_One_File=1
-map <leader>tl :TlistToggle<cr>
+map <F11> :TlistToggle<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""
 " => NERDtree
@@ -58,10 +65,9 @@ set number
 " set cursorline
 " set cursorcolumn
 set hlsearch
+set incsearch
 set virtualedit=onemore
 
-
-set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
@@ -72,7 +78,15 @@ set fileencodings=utf-8,ucs-bom,cp936
 set termencoding=utf-8
 set fileformat=unix
 
+set autoindent
+set cindent
+set smartindent
+
+set mouse=a
+
 syntax enable
+" jump to the last position when open a file
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 " When .vimrc is edit, reload it
 autocmd! bufwritepost .vimrc source ~/.vimrc
