@@ -17,7 +17,8 @@ set laststatus=2
 """""""""""""""""""""""""""""""""""""""""""
 set tags+=~/.vim/tags/kernel-ctags
 set tags+=~/.vim/tags/my-ctags
-map <F12> :!ctags --tag-relative=yes  -f ~/vimfiles/vim/tags/my-ctags -R *<CR> 
+"set tags+=~/lonzo/qsee/tags
+map <F12> :!ctags --tag-relative=yes -f ~/vimfiles/vim/tags/my-ctags -R *<CR> 
 
 """"""""""""""""""""""""""""""""""""""""""""
 " => TagList
@@ -28,7 +29,8 @@ let Tlist_Exit_OnlyWindow=1
 let Tlist_Use_Right_Window=1
 let Tlist_Auto_Update=1
 let Tlist_Show_One_File=1
-map <F11> :TlistToggle<cr>
+let Tlist_Use_SingleClick=1
+map <F9> :TlistToggle<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""
 " => NERDtree
@@ -55,19 +57,9 @@ filetype plugin indent on
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 
-
-
-set backspace=indent,eol,start
-
-set showmatch
-set ruler
-set number
-" set cursorline
-" set cursorcolumn
-set hlsearch
-set incsearch
-set virtualedit=onemore
-
+"""""""""""""""""""""""""""""
+" General
+"""""""""""""""""""""""""""""
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
@@ -81,10 +73,10 @@ set fileformat=unix
 set autoindent
 set cindent
 set smartindent
-
+" Set to auto read when a file is changed from the outside
+set autoread
+" Enable mouse all the time
 set mouse=a
-
-syntax enable
 " jump to the last position when open a file
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
@@ -94,8 +86,37 @@ autocmd! bufwritepost .vimrc source ~/.vimrc
 " Set how many lines of history VIM has to remember
 set history=100
 
+"""""""""""""""""""""""""""
+" color and syntax
+"""""""""""""""""""""""""""
+syntax enable
+"colorscheme desert
+"colorscheme Tomorrow
+"colorscheme Tomorrow-Night
+colorscheme Tomorrow-Night-Eighties
+"colorscheme Tomorrow-Night-Bright
+"colorscheme Tomorrow-Night-Blue
+"colorscheme dracula
+
+"""""""""""""""""""""""""""
+" VIM userinterface
+"""""""""""""""""""""""""""
+" Show wildmenu when auto matching a command
+set wildmenu
+set backspace=indent,eol,start
+set showmatch
+set ruler
+set number
+" set cursorline
+" set cursorcolumn
+set hlsearch
+set incsearch
+set virtualedit=onemore
+set scrolloff=7
 
 nmap <leader>w :w!<cr>
+nmap <leader>f :find<space>
+nnoremap <leader>q :q<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
