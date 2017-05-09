@@ -15,45 +15,87 @@ set laststatus=2
 """"""""""""""""""""""""""""""""""""""""""""
 " => ctags
 """""""""""""""""""""""""""""""""""""""""""
-set tags=tags;
-set tags+=~/src/kernels/msm/tags
-set tags+=~/.vim/tags/my-ctags
+"set tags=tags;
+"set tags+=~/work/kernels/aw-kernel3.10/tags
+"set tags+=~/.vim/tags/my-ctags
 "set tags+=~/lonzo/android5.1/frameworks/native/tags
-map <F12> :!ctags --tag-relative=yes  -f ~/vimfiles/vim/tags/my-ctags -R *<CR> 
-set path=~/src/kernels/msm/include/
-set path+=./
+"map <F12> :!ctags --tag-relative=yes  -f ~/vimfiles/vim/tags/my-ctags -R *<CR> 
+"map <F12> :!ctags --tag-relative=yes -R *<CR> 
+"set path=~/work/kernels/aw-kernel3.10/include/
+"set path+=./
 
 """"""""""""""""""""""""""""""""""""""""""""
 " => Cscope
 """"""""""""""""""""""""""""""""""""""""""""
 if has("cscope")
 "set csprg=/usr/local/bin/cscope
+
+" -> cscope settings <-
+" csto=0: search tag file first
+" csto=1: search cscope database first
 set csto=0
 set cst
+" cspc: how may components of file path to display
+set cspc=4
 set nocsverb
-cs add ~/src/kernels/msm/cscope.out ~/src/kernels/msm
+"set cscopequickfix=s-,c-,d-,i-,t-,e-
+
+" -> database -<
+"cs add ~/work/kernels/aw-kernel3.10/cscope.out ~/work/kernels/aw-krnel3.10/
 " add any database in current directory
 if filereadable("cscope.out")
 	cs add cscope.out
-	" else add database
-	" pointed to by environment
+	set cscopeverbose
+	" else add database pointed to by environment
 elseif $CSCOPE_DB != ""
-		cs add $CSCOPE_DB
+	cs add $CSCOPE_DB
+	 set cscopeverbose
+else
+	" auto search database
+	let cscope_file=findfile("cscope.out", ".;")
+	let cscope_pre=matchstr(cscope_file, ".*/")
+	if !empty(cscope_file) && filereadable(cscope_file)
+		exe "cs add" cscope_file cscope_pre
+	endif
+	 set cscopeverbose
 endif
-"set cscopequickfix=s-,c-,d-,i-,t-,e-
-"set cscopetag
+
+" -> key map for cscope -<
+nmap <leader>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <leader>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <leader>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+nmap <C-n> :cnext<CR>
+nmap <C-p> :cprev<CR>
+" 下表中列出了cscope的常用选项：
+" -R: 在生成索引文件时，搜索子目录树中的代码
+" -b: 只生成索引文件，不进入cscope的界面
+" -q: 生成cscope.in.out和cscope.po.out文件，加快cscope的索引速度
+" -k: 在生成索引文件时，不搜索/usr/include目录
+" -i: 如果保存文件列表的文件名不是cscope.files时，需要加此选项告诉cscope到哪儿
+"     去找源文件列表。可以使用”–“，表示由标准输入获得文件列表。
+" -Idir: 在-I选项指出的目录中查找头文件
+" -u: 扫描所有文件，重新生成交叉索引文件
+" -C: 在搜索时忽略大小写
+" -Ppath: 在以相对路径表示的文件前加上的path，这样，你不用切换到你数据库文件所
+"    在的目录也可以使用它了。
 endif
+" Cscope End
 
 """"""""""""""""""""""""""""""""""""""""""""
 " => TagList
 """"""""""""""""""""""""""""""""""""""""""""
 Plugin 'taglist.vim'
-let Tlist_Auto_Open=0
+let Tlist_Auto_Open=1
 let Tlist_Exit_OnlyWindow=1
 let Tlist_Use_Right_Window=1
 let Tlist_Auto_Update=1
 let Tlist_Show_One_File=1
-let Tlist_Use_SingleClick=1
+let Tlist_Use_SingleClick=0
 map <F11> :TlistToggle<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""
@@ -128,7 +170,7 @@ set history=100
 
 
 nmap <leader>w :w!<cr>
-nmap <leader>q :q<cr>
+nmap <leader>q :qa<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
