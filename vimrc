@@ -71,6 +71,7 @@ nmap <leader>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 nmap <leader>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 nmap <C-n> :cnext<CR>
 nmap <C-p> :cprev<CR>
+" [create database]
 " 下表中列出了cscope的常用选项：
 " -R: 在生成索引文件时，搜索子目录树中的代码
 " -b: 只生成索引文件，不进入cscope的界面
@@ -83,6 +84,17 @@ nmap <C-p> :cprev<CR>
 " -C: 在搜索时忽略大小写
 " -Ppath: 在以相对路径表示的文件前加上的path，这样，你不用切换到你数据库文件所
 "    在的目录也可以使用它了。
+"   sample: csope -Rbqk
+"
+" [cs find]
+"		0 or s: Find this C symbol
+"		1 or g: Find this definition
+"		2 or d: Find functions called by this function
+"		3 or c: Find functions calling this function
+"		4 or t: Find this text string
+"		6 or e: Find this egrep pattern
+"		7 or f: Find this file
+"		8 or i: Find files #including this file
 endif
 " Cscope End
 
