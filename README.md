@@ -48,6 +48,8 @@ TagList：F9 切换打开和关闭
 > 可以修改vimrc文件更改快捷键绑定
 其他快捷键请查看vimrc文件，或者google/baidu
 
+## 效果预览
+
 ![](./pic/vim.png) 
 
 
