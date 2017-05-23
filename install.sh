@@ -14,13 +14,14 @@ BACKUP_DIR=~/vimfiles_bak
 if [ ! -e "$BACKUP_DIR" ]
 then
 	mkdir $BACKUP_DIR
-	mv ~/.vimrc $BACKUP_DIR
-	mv ~/.vim $BACKUP_DIR
-	mv ~/.viminfo $BACKUP_DIR
+	if [ -e ~/.vimrc ]; then mv ~/.vimrc $BACKUP_DIR; fi;
+	if [ -e ~/.vim ]; then mv ~/.vim $BACKUP_DIR; fi;
+	if [ -e ~/.viminfo ]; then mv ~/.viminfo $BACKUP_DIR; fi;
 else
     rm ~/.vimrc
     rm ~/.vim
 fi
+
 # Get vundle
 git clone https://github.com/VundleVim/Vundle.vim.git vim/bundle/Vundle.vim
 
