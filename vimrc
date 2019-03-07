@@ -1,3 +1,8 @@
+" 
+" Lonzo's vimrc
+" refer to websit https://vimawesome.com/ for more vim plugins
+"
+
 let mapleader=","
 
 set nocompatible              " be iMproved, required
@@ -118,7 +123,7 @@ map <F4> :NERDTreeToggle<cr>
 let NERDTreeWinPose='left'
 let NERDTreeHighlightCursorline=1
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-autocmd vimenter *.c,*.h,*.cpp NERDTree | wincmd w
+autocmd vimenter *.c,*.h,*.cpp,*.java NERDTree | wincmd w
 
 Plugin 'jistr/vim-nerdtree-tabs'
 
