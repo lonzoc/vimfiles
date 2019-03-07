@@ -74,6 +74,7 @@ nmap <leader>e :cs find e <C-R>=expand("<cword>")<CR><CR>
 nmap <leader>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <leader>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 nmap <leader>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>a :cs find a <C-R>=expand("<cword>")<CR><CR>
 nmap <C-n> :cnext<CR>
 nmap <C-p> :cprev<CR>
 " [create database]
@@ -130,6 +131,9 @@ Plugin 'jistr/vim-nerdtree-tabs'
 " tagbar
 Plugin 'majutsushi/tagbar'
 
+" Sytax
+Plugin 'justinmk/vim-syntax-extra'
+
 call vundle#end()
 filetype plugin indent on
 "
@@ -170,6 +174,9 @@ set smartindent
 
 set mouse=a
 
+" Set how many lines of history VIM has to remember
+set history=100
+
 """""""""""""""""""""""""""
 " color and syntax
 """""""""""""""""""""""""""
@@ -182,9 +189,12 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 " When .vimrc is edit, reload it
 autocmd! bufwritepost .vimrc source ~/.vimrc
 
-" Set how many lines of history VIM has to remember
-set history=100
+" set terminal Color
+"set term=xterm-256color
+set t_Co=256
 
+" Highlight item
+hi Search term=standout cterm=bold ctermfg=7 ctermbg=2
 
 nmap <leader>w :w!<cr>
 nmap <leader>q :qa<cr>
