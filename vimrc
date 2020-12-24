@@ -70,7 +70,7 @@ nmap <leader>s :cs find s <C-R>=expand("<cword>")<CR><CR>
 nmap <leader>g :cs find g <C-R>=expand("<cword>")<CR><CR>
 nmap <leader>c :cs find c <C-R>=expand("<cword>")<CR><CR>
 nmap <leader>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-nmap <leader>r :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>e :cs find e <C-R>=expand("<cword>")<CR><CR>
 nmap <leader>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <leader>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 nmap <leader>d :cs find d <C-R>=expand("<cword>")<CR><CR>
@@ -134,8 +134,22 @@ Plugin 'majutsushi/tagbar'
 " Sytax
 Plugin 'justinmk/vim-syntax-extra'
 
+""""""""""""""""""""""""""""""""""""""""""""
+" => grep
+""""""""""""""""""""""""""""""""""""""""""""
+Plugin 'grep.vim' 
+nnoremap <silent> <F3> :Rgrep<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""
+" => Opengrok plugin
+""""""""""""""""""""""""""""""""""""""""""""
+"if filereadable(".vim.custom")
+"	so .vim.custom
+"endif
+"Plugin 'jdevera/vim-opengrok-search'
+
+" Vundle END
 call vundle#end()
-filetype plugin indent on
 "
 " Brief help
 " :PluginList       - lists configured plugins
@@ -144,9 +158,12 @@ filetype plugin indent on
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 
+
 """""""""""""""""""""""""""""
 " General
 """""""""""""""""""""""""""""
+filetype plugin indent on
+
 set backspace=indent,eol,start
 
 set showmatch
@@ -158,9 +175,9 @@ set hlsearch
 set incsearch
 set virtualedit=onemore
 
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
+set tabstop=8
+set shiftwidth=8
+set softtabstop=8
 
 set encoding=utf-8
 set fileencoding=utf-8
@@ -171,7 +188,6 @@ set scrolloff=7
 set autoindent
 set cindent
 set smartindent
-
 set mouse=a
 
 " Set how many lines of history VIM has to remember
@@ -198,7 +214,7 @@ hi Search term=standout cterm=bold ctermfg=7 ctermbg=2
 
 nmap <leader>w :w!<cr>
 nmap <leader>q :qa<cr>
-nmap <leader>e :q<cr>
+nmap <leader>r :q<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
