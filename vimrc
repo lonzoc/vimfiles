@@ -148,6 +148,21 @@ nnoremap <silent> <F3> :Rgrep<CR>
 "endif
 "Plugin 'jdevera/vim-opengrok-search'
 
+""""""""""""""""""""""""""""""""""""""""""""
+" => Mark
+""""""""""""""""""""""""""""""""""""""""""""
+" After install these two plugin, needs to manually do git checkout the
+" stable branch in directory vim/bundle/vim-mark and vim-ingo-library
+Plugin 'inkarkat/vim-ingo-library'
+Plugin 'inkarkat/vim-mark'
+" <Leader>m  Mark and unmark works under cursor, If already on a mark: Clear
+" the mark
+" <Leader>n Clear the mark under the cursor.If not on a mark: Disable all marks
+" <Leader>/ <Leader>? Jump next/previous
+" :Mark      Clear all marks
+" :MarkClear Clear all marks.
+" For more helps refers to README of https://github.com/inkarkat/vim-mark
+
 " Vundle END
 call vundle#end()
 "
@@ -214,7 +229,6 @@ hi Search term=standout cterm=bold ctermfg=7 ctermbg=2
 
 nmap <leader>w :w!<cr>
 nmap <leader>q :qa<cr>
-nmap <leader>r :q<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
