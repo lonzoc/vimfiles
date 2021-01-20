@@ -163,6 +163,11 @@ Plugin 'inkarkat/vim-mark'
 " :MarkClear Clear all marks.
 " For more helps refers to README of https://github.com/inkarkat/vim-mark
 
+""""""""""""""""""""""""""""""""""""""""""""
+" => YouCompleteMe
+""""""""""""""""""""""""""""""""""""""""""""
+" Plugin 'Valloric/YouCompleteMe'
+
 " Vundle END
 call vundle#end()
 "
